@@ -1,11 +1,32 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 function List() {
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/server2')
+    .then(res => res.json())
+    .then(data => setList(data));
+  }, []);
+
+  // useEffect(() => {
+  //   (async() => {
+  //     let response = await fetch('http://localhost:3000/server2');
+  //     let data = await response.json();
+  //     setList(data);
+  //   })();
+  // }, []);
+
   return(
     <ul className="list-group">
-      <li className="list-group-item">Cras justo odio</li>
-      <li className="list-group-item">Dapibus ac facilisis in</li>
-      <li className="list-group-item">Morbi leo risus</li>
-      <li className="list-group-item">Porta ac consectetur ac</li>
-      <li className="list-group-item">Vestibulum at eros</li>
+      {list.length ? list.map(el => {
+        return (
+          <li key={el.id} className="list-group-item">
+            <Link to={`/server2/${el.id}`}>{el.name}</Link>
+          </li>
+        )
+      }) : (<li className="list-group-item">no users</li>)}
     </ul>
   )
 }

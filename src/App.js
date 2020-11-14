@@ -16,13 +16,22 @@ function App() {
       <div className="container py-5">priviet</div>
 
       <Switch>
-          <Route exact path="/users">
+          <Route exact path="/server2">
             <List />
           </Route>
 
           <Route exact path="/">
             Houmi
           </Route>
+
+          <Route exact path="/server2/:id">
+            <User />
+          </Route>
+
+          <Route>
+            priviet oshibka 404!
+          </Route>
+
         </Switch>
 
       {/* <User/> */}
