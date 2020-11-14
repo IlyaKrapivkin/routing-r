@@ -1,16 +1,49 @@
 import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function User() {
+  const [user, setUser] = useState({});
   const { id } = useParams();
+
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_URL}/server2/${id}`)
+    .then(res => res.json())
+    .then(data => setUser(data));
+  }, []);
+
   return(
-  <div className="card" style={{width: '18rem'}}>
-    <div className="card-body">
-      <h5 className="card-title">Name</h5>
-      <h6 className="card-subtitle mb-2 text-muted">ID: {id}</h6>
-      <p className="card-text">097076668878766</p>
-    </div>
-  </div>
+    <>
+    {
+      user.name ?  <div className="card" style={{width: '18rem'}}>
+        <div className="card-body">
+          <h5 className="card-title">{user.name}</h5>
+          <h6 className="card-subtitle mb-2 text-muted">{user.id}</h6>
+          <p className="card-text">{user.phone}</p>
+        </div>
+      </div> :<h2>user was not finded</h2>
+    }
+    </>
   )
 }
 
 export default User;
+
+// AFTERCODE:
+
+//  <div className="card" style={{width: '18rem'}}>
+// <div className="card-body">
+//   <h5 className="card-title">{user.name}</h5>
+//   <h6 className="card-subtitle mb-2 text-muted">{user.id}</h6>
+//   <p className="card-text">{user.phone}</p>
+// </div>
+// </div>
+
+// user ? (
+//   <div className="card" style={{width: '18rem'}}>
+//     <div className="card-body">
+//       <h5 className="card-title">{user.name}</h5>
+//       <h6 className="card-subtitle mb-2 text-muted">{user.id}</h6>
+//       <p className="card-text">{user.phone}</p>
+//     </div>
+//   </div>
+// ) : <h1>no such user!</h1>

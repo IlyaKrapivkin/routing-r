@@ -5,7 +5,7 @@ function List() {
   const [list, setList] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/server2')
+    fetch(`${process.env.REACT_APP_URL}/server2`)
     .then(res => res.json())
     .then(data => setList(data));
   }, []);
