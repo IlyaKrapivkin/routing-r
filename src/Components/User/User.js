@@ -1,5 +1,6 @@
 import { useParams, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Loader from '../Loader/Loader';
 
 function User() {
   const [user, setUser] = useState({});
@@ -33,7 +34,7 @@ function User() {
           <h6 className="card-subtitle mb-2 text-muted">{user.id}</h6>
           <p className="card-text">{user.phone}</p>
         </div>
-      </div> :<h2>user was not finded</h2>
+      </div> : <Loader/>
     }
     </>
   )
