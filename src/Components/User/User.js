@@ -1,14 +1,27 @@
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 function User() {
   const [user, setUser] = useState({});
   const { id } = useParams();
 
+  const history = useHistory();
+
   useEffect(() => {
+    let timeOutID;
+
     fetch(`${process.env.REACT_APP_URL}/server2/${id}`)
     .then(res => res.json())
-    .then(data => setUser(data));
+    .then(data => {
+      setUser(data);
+      timeOutID = setTimeout(() => {
+        history.push('/');
+      }, 3000);
+    });
+
+    return () => {
+      clearTimeout(timeOutID);
+    }
   }, []);
 
   return(
