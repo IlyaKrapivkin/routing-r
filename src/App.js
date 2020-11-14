@@ -2,6 +2,7 @@ import './App.css';
 import Header from './Components/Header/Header';
 import List from './Components/List/List';
 import User from './Components/User/User';
+import Pagination from './Components/Pagination/Pagination';
 import {
   BrowserRouter as Router,
   Switch,
@@ -34,7 +35,7 @@ function App() {
 
         </Switch>
 
-      {/* <User/> */}
+      <Pagination/>
     </Router>
   );
 }
