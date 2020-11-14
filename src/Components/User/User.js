@@ -10,8 +10,9 @@ function User() {
 
   useEffect(() => {
     let timeOutID;
+    let ac = new AbortController();
 
-    fetch(`${process.env.REACT_APP_URL}/server2/${id}`)
+    fetch(`${process.env.REACT_APP_URL}/server2/${id}`, {signal: ac.signal})
     .then(res => res.json())
     .then(data => {
       setUser(data);
@@ -21,6 +22,7 @@ function User() {
     });
 
     return () => {
+      ac.abort();
       clearTimeout(timeOutID);
     }
   }, []);
