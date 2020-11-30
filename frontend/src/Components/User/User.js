@@ -18,7 +18,7 @@ function User() {
       setUser(data);
       timeOutID = setTimeout(() => {
         history.push('/');
-      }, 3000);
+      }, 1500);
     });
 
     return () => {

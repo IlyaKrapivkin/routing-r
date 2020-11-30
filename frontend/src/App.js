@@ -14,7 +14,6 @@ function App() {
   return (
     <Router>
       <Header/>
-      <div className="container py-5">priviet</div>
 
       <Switch>
           <Route exact path="/server2">
@@ -22,7 +21,7 @@ function App() {
           </Route>
 
           <Route exact path="/">
-            Houmi
+            Home page
           </Route>
 
           <Route exact path="/server2/:id">
@@ -30,7 +29,7 @@ function App() {
           </Route>
 
           <Route>
-            priviet oshibka 404!
+            cause of error 404!
           </Route>
 
         </Switch>
